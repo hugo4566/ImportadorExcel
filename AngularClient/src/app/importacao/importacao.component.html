@@ -1,0 +1,49 @@
+<div class="container">
+    <div fxLayout="row" fxLayoutAlign="center center" class="content">
+        <mat-card class="card">
+            <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+                <h3>Detalhes da Importação</h3>
+            </mat-card-title>
+            <mat-card-content>
+                <div class="table-container mat-elevation-z8">
+                    <mat-table #table [dataSource]="importacoes">
+                        <ng-container matColumnDef="dtImportacao">
+                            <mat-header-cell *matHeaderCellDef> Data de Entrega</mat-header-cell>
+                            <mat-cell style="text-align: center;" *matCellDef="let element"> {{element.dtEntrega  | date: 'dd/MM/Y'}}
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="nmProduto">
+                            <mat-header-cell *matHeaderCellDef> Nome do Produto </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.nmProduto}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="vlUnitario">
+                            <mat-header-cell *matHeaderCellDef> Valor Unitário </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.vlUnitario | currency:"R$"}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="qtdProduto">
+                            <mat-header-cell *matHeaderCellDef> Quantidade de Produtos </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.qtdProduto }} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="vlTotal">
+                            <mat-header-cell *matHeaderCellDef> Valor Total </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.vlTotal | currency:"R$"}} </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                    <div *ngIf="loading" class="spinner">
+                        <mat-progress-spinner 
+                            color="primary" 
+                            mode="indeterminate">
+                        </mat-progress-spinner>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center" class="content">
+                    <button type="button" mat-raised-button color="accent" (click)="goBack()">
+                        Voltar para a tela de importar
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

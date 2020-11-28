@@ -1,0 +1,17 @@
+.card {
+    margin-top: 20px;
+    min-width: 80%;
+  }
+
+.content {
+  margin-bottom: 20px;
+}
+
+.spinner {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: white;
+}

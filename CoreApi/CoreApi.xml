@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CoreApi</name>
+    </assembly>
+    <members>
+        <member name="M:CoreApi.Controllers.ImportacaoController.GetImportacoes">
+            <summary>
+            Lista os dados gerais das importacoes realizadas.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreApi.Controllers.ImportacaoController.GetImportacao(System.Int32)">
+            <summary>
+            Lista os dados de uma importacao especifica.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreApi.Controllers.ImportacaoController.PostEntregas(CoreApi.DTO.DtoArquivo)">
+            <summary>
+            Recebe os dados do arquivo excel para inserir na base.
+            </summary>
+            <param name="dtoArquivo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreApi.Controllers.ImportacaoController.ExtrairEntregas(System.Byte[])">
+            <summary>
+            Obtem os dados de entrega do excel.
+            </summary>
+            <param name="buffer"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,81 @@
+<div class="container">
+    <div fxLayout="row" fxLayoutAlign="center center" class="content">
+        <mat-card class="card">
+            <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+                <h3>Importar Arquivo Excel</h3>
+            </mat-card-title>
+            <mat-card-content>
+                <div fxLayout="row" class="content">
+                    <input #excelInput hidden="true" type="file" onclick="this.value=null"
+                        (change)="onFileChange($event)" accept=".xlsx" [disabled]="loading">
+                    <button type="button" style="margin-right: 10px;" mat-raised-button color="primary"
+                        (click)="excelInput.click()">
+                        <mat-icon>add</mat-icon>
+                        Escolhar o arquivo
+                    </button>
+                    <span>{{webFile?.name}}</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center" class="content" *ngIf="!loading">
+                    <button type="button" mat-raised-button color="accent" (click)="uploadFile()">
+                        Importar Arquivo
+                    </button>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center" class="content" *ngIf="loading">
+                    <mat-spinner></mat-spinner>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center" class="content">
+        <mat-card class="card">
+            <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+                <h3>Importações Realizadas</h3>
+            </mat-card-title>
+            <mat-card-content>
+                <div class="table-container mat-elevation-z8">
+                    <mat-table #table [dataSource]="lotes">
+                        <ng-container matColumnDef="dtImportacao">
+                            <mat-header-cell *matHeaderCellDef> Data de Importação </mat-header-cell>
+                            <mat-cell style="text-align: center;" *matCellDef="let element">
+                                {{element.dtImportacao  | date: 'dd/MM/Y HH:mm:ss'}}
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="nrRegistros">
+                            <mat-header-cell *matHeaderCellDef> Número de Registros </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.nrRegistros}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="nrTotalProdutos">
+                            <mat-header-cell *matHeaderCellDef> Número de Total de Produtos </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.nrTotalProdutos}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="vlTotalImportado">
+                            <mat-header-cell *matHeaderCellDef> Valor Total Importado </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.vlTotalImportado | currency:"R$" }}
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="menorDataEntrega">
+                            <mat-header-cell *matHeaderCellDef> Menor Data de Entrega </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.menorDataEntrega | date : 'dd/MM/y'}}
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="delete">
+                            <mat-header-cell *matHeaderCellDef>Detalhes</mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <a [routerLink]="['/importacao', element.id]" type="button" alt="Detalhar"
+                                    title="Detalhar">
+                                    <mat-icon class="icon">search</mat-icon>
+                                </a>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                    <div *ngIf="loadingLotes" class="spinner">
+                        <mat-progress-spinner color="primary" mode="indeterminate">
+                        </mat-progress-spinner>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

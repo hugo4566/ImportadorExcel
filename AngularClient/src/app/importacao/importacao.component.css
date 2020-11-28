@@ -1,0 +1,33 @@
+.card {
+    margin-top: 20px;
+    min-width: 80%;
+  }
+  
+  .table-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 100%;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+  
+  a {
+    cursor: pointer;
+  }
+
+.content {
+  margin-top: 20px;
+}
+
+.spinner {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: white;
+}
